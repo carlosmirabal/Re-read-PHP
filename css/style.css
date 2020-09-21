@@ -107,10 +107,20 @@
 
   .ebook:hover {
     background-color: red;
+    color: white;
   }
   /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     .column.left, .column.right , .topnav a , .ebook{
       width: 100%;
+    }
+    /* encabezado */
+    .header p {
+      padding: 0;
+    }
+    /* Items del menu navegación */
+    .topnav a {
+      width: 100%;
+      font-size: 20px;
     }
   }
