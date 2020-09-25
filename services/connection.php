@@ -3,7 +3,7 @@
     $host="localhost";
     $user="root";
     $pass="";
-    $db="reread";
+    $db="db_reread";
 
     //Crear la conexión
     $conn=mysqli_connect($host,$user,$pass,$db);
