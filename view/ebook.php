@@ -29,7 +29,7 @@
       include '../services/connection.php';
 
       // 2. Selección y muestra de datos de la base de datos
-      $result=mysqli_query($conn,"SELECT Books.Descripcion, Books.img, Books.Title From Books");
+      $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
 
       if (!empty($result) && mysqli_num_rows($result) > 0) {
         // datos de salida de cada fila (fila=row)
@@ -61,13 +61,13 @@
       <a href="https://www.casadellibro.com/ebook-memorias-de-idhun-saga-ebook/9788467569889/2284747"><img src="../img/libro3.jpg" alt="ebook 3"></a>
       <div>MEMORIAS DE IDHÚN. SAGA</div>
     </div>
-
-    <div class="ebook">
+   -->
+    <!-- <div class="ebook">
       <a href="https://www.casadellibro.com/ebook-adivina-quien-llama-a-la-puerta-ebook/9788416508082/2666077"><img src="../img/libro4.jpg" alt="ebook 4"></a>
       <div>ADIVINA QUIEN LLAMA A LA PUERTA</div>
-    </div>
+    </div> -->
   </div>
-   -->
+
   <div class="column right">
     <h2>Top ventas</h2>
     <p>Cien años de soledad</p>
