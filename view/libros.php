@@ -46,11 +46,23 @@
   </div>
   
   <div class="column right">
-    <h2>Top ventas</h2>
+    <!-- <h2>Top ventas</h2>
     <p>Cien años de soledad</p>
     <p>Crónica de una muerte anunciada</p>
     <p>El otoño del patriarca</p>
-    <p>El general en su laberinto</p>
+    <p>El general en su laberinto</p> -->
+    <?php 
+      include '../services/connection.php';
+      $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
+
+      if (!empty($result) && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+          echo "<p>".$row['Title']."</p>";
+        }
+      }else {
+        echo "0 resultados";
+      }
+    ?>
   </div>
 </div>
   
