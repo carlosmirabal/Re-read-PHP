@@ -29,17 +29,22 @@
       include '../services/connection.php';
 
       // 2. Selección y muestra de datos de la base de datos
-      $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
+      $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
 
-      if (!empty($result) && mysqli_num_rows($result) > 0) {
+      if (!empty($result1) && mysqli_num_rows($result1) > 0) {
         // datos de salida de cada fila (fila=row)
-        while ($row = mysqli_fetch_array($result)) {
+        $i=0;
+        while ($row = mysqli_fetch_array($result1)) {
+          $i=$i+1;
           echo "<div class='ebook'>";
           // Añadimos la imagen a la paginacon la etiqueta img de HTML
           echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
           // Añadimos el titulo a la pagina cpn la etiqueta h2 de HTML
-          // echo "<div class='desc'".$row['Title']."</div>;
-          echo "</div>"; 
+          echo "<div class='desc'>".$row['Description']."</div>";
+          echo "</div>";
+          if ($i % 3 == 0) {
+            echo "<div style='clear:both;'></div>";
+          }
         }
       }else {
         echo "0 resultados";
