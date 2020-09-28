@@ -53,7 +53,7 @@
     <p>El general en su laberinto</p> -->
     <?php 
       include '../services/connection.php';
-      $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
+      $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books WHERE Top='1'");
 
       if (!empty($result) && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {
