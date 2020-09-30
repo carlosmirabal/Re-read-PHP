@@ -36,7 +36,7 @@
     <p>El otoño del patriarca</p>
     <p>El general en su laberinto</p> -->
     <?php 
-      include '/services/connection.php';
+      include './services/connection.php';
       $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books WHERE Top='1'");
 
       if (!empty($result) && mysqli_num_rows($result) > 0) {
