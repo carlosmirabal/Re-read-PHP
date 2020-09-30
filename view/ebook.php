@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Estilos enlazados-->
 <link rel="stylesheet" href="../css/style.css" type="text/css">
+  <script src="../javascript/code.js"></script>
 </head>
 <body>
 
@@ -29,17 +30,22 @@
       include '../services/connection.php';
 
       // 2. Selección y muestra de datos de la base de datos
-      $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
+      $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
 
-      if (!empty($result) && mysqli_num_rows($result) > 0) {
+      if (!empty($result1) && mysqli_num_rows($result1) > 0) {
         // datos de salida de cada fila (fila=row)
-        while ($row = mysqli_fetch_array($result)) {
+        $i=0;
+        while ($row = mysqli_fetch_array($result1)) {
+          $i=$i+1;
           echo "<div class='ebook'>";
           // Añadimos la imagen a la paginacon la etiqueta img de HTML
           echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
           // Añadimos el titulo a la pagina cpn la etiqueta h2 de HTML
-          // echo "<div class='desc'".$row['Title']."</div>;
-          echo "</div>"; 
+          echo "<div class='desc'>".$row['Description']."</div>";
+          echo "</div>";
+          if ($i % 3 == 0) {
+            echo "<div style='clear:both;'></div>";
+          }
         }
       }else {
         echo "0 resultados";
@@ -69,11 +75,23 @@
   </div>
 
   <div class="column right">
-    <h2>Top ventas</h2>
+    <!-- <h2>Top ventas</h2>
     <p>Cien años de soledad</p>
     <p>Crónica de una muerte anunciada</p>
     <p>El otoño del patriarca</p>
-    <p>El general en su laberinto</p>
+    <p>El general en su laberinto</p> -->
+    <?php 
+      include '../services/connection.php';
+      $result=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books WHERE Top='1'");
+
+      if (!empty($result) && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+          echo "<p>".$row['Title']."</p>";
+        }
+      }else {
+        echo "0 resultados";
+      }
+    ?>
   </div>
 </div>
   
