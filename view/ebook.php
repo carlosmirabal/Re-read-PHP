@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Estilos enlazados-->
 <link rel="stylesheet" href="../css/style.css" type="text/css">
-  <script src="../javascript/code.js"></script>
+<script src="../javascript/code.js"></script>
 </head>
 <body>
 
@@ -23,8 +23,28 @@
         <a href="../index.php">Re-Read</a>
         <a href="libros.php">Libros</a>
         <a href="ebook.php">eBooks</a>
-      </div>
-    <h3>Toda la actualidad en eBook</h3>
+    </div>
+
+      <h3>Toda la actualidad en eBook</h3>
+      
+    <div class="form">
+      <form action="ebook.php" method="POST">
+        <label for="fautor">Autor</label>
+        <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor...">
+      
+        <input type="submit" value="Buscar">
+      </form>
+    </div>
+
+    <?php 
+      if(isset($_POST['fautor'])){
+        // filtrará los ebooks que se mostraran en la página
+        
+      }else {
+        // mostrará todos los ebooks de la base de datos
+      }
+    ?>
+
     <?php 
       // 1. Conexión con la base de datos
       include '../services/connection.php';
