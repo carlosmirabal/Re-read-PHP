@@ -31,6 +31,9 @@
       <form action="ebook.php" method="POST">
         <label for="fautor">Autor</label>
         <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor...">
+        <label for="ftitulo">Título</label>
+        <input type="text" id="ftitulo" name="ftitulo" placeholder="Introduce el título...">
+        <label for="country">País</label>
         <select name="country">
         <option value="%">Selecciona un pais</option>
          <!-- <option value="Select School">Select Shool</option> -->
@@ -49,16 +52,26 @@
     <?php 
       include '../services/connection.php';
 
-      if(isset($_POST['fautor']) || isset($row['id'])){
+      if(isset($_POST['fautor']) || isset($_POST['ftitulo'])){
         // filtrará los ebooks que se mostraran en la página
         $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books INNER JOIN booksauthors ON books.id=booksauthors.BookId 
-        INNER JOIN authors ON authors.id=booksauthors.AuthorId WHERE authors.Name LIKE '%{$_POST['fautor']}%' AND authors.country LIKE '{$_POST['country']}'");
+        INNER JOIN authors ON authors.id=booksauthors.AuthorId WHERE authors.Name LIKE '%{$_POST['fautor']}%' AND authors.country LIKE '{$_POST['country']}'AND books.title LIKE '%{$_POST['ftitulo']}%'");
 
       }else {
         // mostrará todos los ebooks de la base de datos
         // 2. Selección y muestra de datos de la base de datos
         $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
       }
+      // if(isset($_POST['ftitulo'])){
+      //   // filtrará los ebooks que se mostraran en la página
+      //   $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books INNER JOIN booksauthors ON books.id=booksauthors.BookId 
+      //   INNER JOIN authors ON authors.id=booksauthors.AuthorId WHERE authors.Name LIKE '%{$_POST['fautor']}%' AND authors.country LIKE '{$_POST['country']}'AND books.title LIKE '%{$_POST['ftitulo']}%'");
+
+      // }else {
+      //   // mostrará todos los ebooks de la base de datos
+      //   // 2. Selección y muestra de datos de la base de datos
+      //   $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
+      // }
 
       if (!empty($result1) && mysqli_num_rows($result1) > 0) {
         // datos de salida de cada fila (fila=row)
