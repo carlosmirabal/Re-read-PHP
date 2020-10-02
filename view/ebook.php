@@ -37,21 +37,17 @@
     </div>
 
     <?php 
-      if(isset($_POST['fautor'])){
-        // filtrará los ebooks que se mostraran en la página
-        
-      }else {
-        // mostrará todos los ebooks de la base de datos
-        // 
-      }
-    ?>
-
-    <?php 
-      // 1. Conexión con la base de datos
       include '../services/connection.php';
 
-      // 2. Selección y muestra de datos de la base de datos
-      $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
+      if(isset($_POST['fautor'])){
+        // filtrará los ebooks que se mostraran en la página
+        $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books INNER JOIN booksauthors ON books.id=booksauthors.BookId INNER JOIN authors ON authors.id=booksauthors.AuthorId WHERE authors.Name LIKE '%{$_POST['fautor']}%'");
+
+      }else {
+        // mostrará todos los ebooks de la base de datos
+        // 2. Selección y muestra de datos de la base de datos
+        $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
+      }
 
       if (!empty($result1) && mysqli_num_rows($result1) > 0) {
         // datos de salida de cada fila (fila=row)
