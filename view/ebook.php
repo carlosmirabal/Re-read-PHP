@@ -31,7 +31,17 @@
       <form action="ebook.php" method="POST">
         <label for="fautor">Autor</label>
         <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor...">
-      
+        <select name="categories">
+        <option value="pais">Selecciona un pais</option>
+         <!-- <option value="Select School">Select Shool</option> -->
+        <?php 
+        include '../services/connection.php';
+          $sql_pais=mysqli_query($conn,"SELECT authors.country from authors");
+            while ($row = mysqli_fetch_array($sql_pais)) {
+              echo "<option value='" . $row['id'] . "'>" . $row['country'] . "</option>";
+          }
+        ?>
+        </select>
         <input type="submit" value="Buscar">
       </form>
     </div>
