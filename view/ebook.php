@@ -62,6 +62,7 @@
         // 2. Selección y muestra de datos de la base de datos
         $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books");
       }
+      //Hola
       // if(isset($_POST['ftitulo'])){
       //   // filtrará los ebooks que se mostraran en la página
       //   $result1=mysqli_query($conn,"SELECT Books.Description, Books.img, Books.Title From Books INNER JOIN booksauthors ON books.id=booksauthors.BookId 
